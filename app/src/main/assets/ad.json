@@ -1,0 +1,97 @@
+{
+  "placements": [
+    {
+      "type": "banner",
+      "refresh": 30000,
+      "adUnits": [
+        {
+          "adUnitId": "ca-app-pub-3940256099942544/6300978111",
+          "platform": "admob",
+          "price": 1,
+          "group": "test",
+          "adType": "banner"
+        }
+      ]
+    },
+    {
+      "type": "interstitial",
+      "refresh": 20,
+      "adUnits": [
+        {
+          "adUnitId": "ca-app-pub-3940256099942544/8691691433",
+          "platform": "admob",
+          "price": 2,
+          "group": "test",
+          "adType": "interstitial"
+        },
+        {
+          "adUnitId": "ca-app-pub-3940256099942544/1033173712",
+          "platform": "admob",
+          "price": 1,
+          "group": "test",
+          "adType": "interstitial"
+        }
+      ]
+    },
+    {
+      "type": "rewarded",
+      "refresh": 20,
+      "adUnits": [
+        {
+          "adUnitId": "ca-app-pub-3940256099942544/5224354917",
+          "platform": "admob",
+          "price": 1,
+          "group": "test",
+          "adType": "rewarded"
+        },
+        {
+          "adUnitId": "ca-app-pub-3940256099942544/5354046379",
+          "platform": "admob",
+          "price": 1,
+          "group": "test2",
+          "adType": "rewarded"
+        }
+      ]
+    },
+    {
+      "type": "nativeAd",
+      "refresh": 20,
+      "adUnits": [
+        {
+          "adUnitId": "ca-app-pub-3940256099942544/1044960115",
+          "platform": "admob",
+          "price": 1,
+          "group": "test",
+          "adType": "nativeAd"
+        },
+        {
+          "adUnitId": "ca-app-pub-3940256099942544/2247696110",
+          "platform": "admob",
+          "price": 1,
+          "group": "test2",
+          "adType": "nativeAd"
+        }
+      ]
+    },
+    {
+      "type": "appOpenAd",
+      "refresh": 20,
+      "adUnits": [
+        {
+          "adUnitId": "ca-app-pub-3940256099942544/3419835294",
+          "platform": "admob",
+          "price": 1,
+          "group": "test",
+          "adType": "appOpenAd"
+        }
+      ]
+    }
+  ],
+  "platforms": [
+    {
+      "platform": "admob",
+      "appKey": "ca-app-pub-3940256099942544~3347511713",
+      "appSecret": ""
+    }
+  ]
+}
