@@ -45,9 +45,12 @@ dependencies {
     implementation 'com.google.android.material:material:1.4.0'
     implementation 'androidx.constraintlayout:constraintlayout:2.0.4'
 
-    implementation project(path: ':core')
+//    implementation 'com.easy:ad-core:1.0.0'
+//    implementation 'com.easy:ad-unity:1.0.0'
+//    implementation 'com.easy:ad-admob:1.0.0'
     implementation project(path: ':admob')
     implementation project(path: ':unity')
+    implementation project(path: ':core')
 
 
 }

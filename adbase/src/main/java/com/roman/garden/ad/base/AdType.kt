@@ -19,7 +19,7 @@ enum class AdType(val value: String) {
 
     companion object{
 
-        open fun getAdType(str: String?) : AdType {
+        fun getAdType(str: String?) : AdType {
             when(str){
                 INTERSTITIAL.value -> return INTERSTITIAL
                 REWARDED_VIDEO.value -> return REWARDED_VIDEO

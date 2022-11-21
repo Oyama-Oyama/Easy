@@ -8,13 +8,14 @@ plugins {
 //apply from: "config.gradle"
 //def _admob = false
 //def _file = file("${project.rootDir}/configs/app.json")
-//if(file("${project.rootDir}/configs/app.json").exists()){
+//if(_file.exists()){
+//   def _json = new groovy.json.JsonSlurper()
 
 //    def _config = new groovy.json.JsonSlurper().parseText(jsonFile.text)
-//    _admob = _config.admob
-//    println("config :" + _admob)
-//    def _test = _config.meta.test
-//    println("config test meta :" + _test)
+////    _admob = _config.admob
+////    println("config :" + _admob)
+////    def _test = _config.meta.test
+////    println("config test meta :" + _test)
 //}
 
 //JSONObject readConfig(){
@@ -78,9 +79,10 @@ android {
 }
 
 dependencies {
+    //api project(path: ':adbase')
+   // api 'com.easy:ad-base:1.0.0'
     api project(path: ':adbase')
-
- //   implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-android:1.3.9'
+    //   implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-android:1.3.9'
 
 //    implementation 'androidx.core:core-ktx:1.7.0'
 //    implementation 'androidx.appcompat:appcompat:1.3.0'
@@ -90,4 +92,32 @@ dependencies {
 
 
 
+}
+
+Properties properties = new Properties()
+properties.load(project.rootProject.file('local.properties').newDataInputStream())
+def userName = properties.getProperty("USERNAME")
+def password = properties.getProperty("PASSWORD")
+
+apply plugin: 'maven-publish'
+publishing {
+    publications {
+        release(MavenPublication){
+            groupId='com.easy'
+            artifactId = 'ad-core'
+            version = '1.0.0'
+            afterEvaluate {
+                from components.release
+            }
+        }
+    }
+    repositories {
+        maven {
+            url 'https://packages.aliyun.com/maven/repository/2304310-release-55tkv4/'
+            credentials {
+                it.username = userName
+                it.password = password
+            }
+        }
+    }
 }

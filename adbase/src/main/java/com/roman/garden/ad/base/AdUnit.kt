@@ -39,7 +39,7 @@ open class AdUnit {
 
     companion object {
 
-        open fun build(
+        fun build(
             adUnitId: String?,
             platform: String?,
             price: Float,
@@ -57,7 +57,7 @@ open class AdUnit {
             }
         }
 
-        open fun build(json: JSONObject): AdUnit {
+        fun build(json: JSONObject): AdUnit {
             return AdUnit().apply {
                 this.adUnitId = json.optString("adUnitId", null)
                 this._platform = json.optString("platform", null)

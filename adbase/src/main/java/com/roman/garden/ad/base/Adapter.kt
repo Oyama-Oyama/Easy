@@ -26,6 +26,7 @@ abstract class Adapter {
                     AdType.BANNER -> realLoadBanner(context, adImpl)
                     AdType.NATIVE_AD -> realLoadNative(context, adImpl)
                     AdType.APP_OPEN_AD -> realLoadAppOpenAd(context, adImpl)
+                    else -> Logger.d("unable find ad type t load:$adUnit")
                 }
             }
             false -> Logger.d("already in loading:$adUnit")

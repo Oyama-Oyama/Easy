@@ -30,6 +30,35 @@ android {
 
 dependencies {
 
-    implementation project(path: ':adbase')
+   // implementation 'com.easy:ad-base:1.0.0'
     implementation 'com.github.Unity-Technologies:unity-ads-android:4.4.1'
+    implementation project(path: ':adbase')
+}
+
+Properties properties = new Properties()
+properties.load(project.rootProject.file('local.properties').newDataInputStream())
+def userName = properties.getProperty("USERNAME")
+def password = properties.getProperty("PASSWORD")
+
+apply plugin: 'maven-publish'
+publishing {
+    publications {
+        release(MavenPublication){
+            groupId='com.easy'
+            artifactId = 'ad-unity'
+            version = '1.0.0'
+            afterEvaluate {
+                from components.release
+            }
+        }
+    }
+    repositories {
+        maven {
+            url 'https://packages.aliyun.com/maven/repository/2304310-release-55tkv4/'
+            credentials {
+                it.username = userName
+                it.password = password
+            }
+        }
+    }
 }

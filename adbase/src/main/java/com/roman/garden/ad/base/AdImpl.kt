@@ -36,7 +36,7 @@ class AdImpl {
 
     fun isValid() : Boolean {
         return this.run {
-            return adUnit != null && adUnit!!.isValid()
+            return adUnit != null && adUnit.isValid()
         }
     }
 

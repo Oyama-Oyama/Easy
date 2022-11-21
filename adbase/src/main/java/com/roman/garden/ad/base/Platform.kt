@@ -18,7 +18,7 @@ class Platform {
 
     companion object {
 
-        open fun build(json: JSONObject): Platform {
+        fun build(json: JSONObject): Platform {
             return Platform().apply {
                 title = json.optString("platform", null)
                 appId = json.optString("appKey", null)

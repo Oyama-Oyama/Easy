@@ -1,6 +1,8 @@
 plugins {
     id 'com.android.library'
     id 'org.jetbrains.kotlin.android'
+
+  //  id 'groovy'
 }
 
 android {
@@ -32,4 +34,32 @@ android {
 dependencies {
 
 
+}
+
+Properties properties = new Properties()
+properties.load(project.rootProject.file('local.properties').newDataInputStream())
+def userName = properties.getProperty("USERNAME")
+def password = properties.getProperty("PASSWORD")
+
+apply plugin: 'maven-publish'
+publishing {
+    publications {
+        release(MavenPublication){
+            groupId='com.easy'
+            artifactId = 'ad-base'
+            version = '1.0.0'
+            afterEvaluate {
+                from components.release
+            }
+        }
+    }
+    repositories {
+        maven {
+            url 'https://packages.aliyun.com/maven/repository/2304310-release-55tkv4/'
+            credentials {
+                it.username = userName
+                it.password = password
+            }
+        }
+    }
 }

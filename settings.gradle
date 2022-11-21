@@ -1,17 +1,34 @@
 pluginManagement {
+
     repositories {
+        maven { url 'https://maven.aliyun.com/repository/public' }
         gradlePluginPortal()
         google()
         mavenCentral()
         maven { url 'https://jitpack.io' }
     }
 }
+
+
+
 dependencyResolutionManagement {
     repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
     repositories {
+        maven { url 'https://maven.aliyun.com/repository/public' }
         google()
         mavenCentral()
         maven { url 'https://jitpack.io' }
+        maven {
+            Properties properties = new Properties()
+            properties.load(file('local.properties').newDataInputStream())
+            def userName = properties.getProperty("USERNAME")
+            def passWord = properties.getProperty("PASSWORD")
+            credentials {
+                username userName
+                password passWord
+            }
+            url 'https://packages.aliyun.com/maven/repository/2304310-release-55tkv4/'
+        }
     }
 }
 rootProject.name = "KExample"
