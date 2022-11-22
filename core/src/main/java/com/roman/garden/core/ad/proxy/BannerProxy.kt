@@ -23,7 +23,12 @@ internal class BannerProxy : AdProxy() {
 
     private var runnable: Runnable = Runnable {
         run {
-            _container?.let { it.get()?.let { viewGroup -> show(viewGroup) } }
+            _container?.let {
+                it.get()?.let { viewGroup ->
+                    show(viewGroup)
+                    handler.postDelayed(runnable, AdUnitManager.instance.getBannerRefreshDuration())
+                }
+            }
         }
     }
 
@@ -40,6 +45,7 @@ internal class BannerProxy : AdProxy() {
     }
 
     fun show(container: ViewGroup) {
+        hide()//先关闭上一个banner，保持全局只存在一个banner循环，何时关闭banner由用户决定
         _container = WeakReference(container)
         handler.removeCallbacks(runnable)
         handler.postDelayed(runnable, AdUnitManager.instance.getBannerRefreshDuration())

@@ -43,7 +43,7 @@ open class Easy {
                             ActivityStatus.ActivityState.RESUMED -> {}
                             ActivityStatus.ActivityState.PAUSED -> {}
                             ActivityStatus.ActivityState.STOPPED -> {
-                                hideBanner()
+                             //   hideBanner()
                             }
                             ActivityStatus.ActivityState.DESTROYED -> {
                                 hideNativeAd()
