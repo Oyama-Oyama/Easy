@@ -5,7 +5,7 @@ plugins {
     id 'org.jetbrains.kotlin.android'
 }
 
-def ADMOB_APP_ID = "ca-app-pub-3940256099942544~3347511713"
+//def ADMOB_APP_ID = "ca-app-pub-3940256099942544~3347511713"
 
 android {
     compileSdk 32
@@ -17,10 +17,10 @@ android {
         versionCode 1
         versionName "1.0"
 
-        manifestPlaceholders = [
-                ADMOB_APP_ID: "${ADMOB_APP_ID}"
-
-        ]
+//        manifestPlaceholders = [
+//                ADMOB_APP_ID: "${ADMOB_APP_ID}"
+//
+//        ]
     }
 
     buildTypes {

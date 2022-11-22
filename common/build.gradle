@@ -9,8 +9,9 @@ android {
     defaultConfig {
         minSdk 21
         targetSdk 32
-        versionCode 1
-        versionName "1.0"
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        consumerProguardFiles "consumer-rules.pro"
     }
 
     buildTypes {
@@ -29,10 +30,7 @@ android {
 }
 
 dependencies {
-//    com.unity3d.ads:unity-ads:4.4.0
-   // implementation 'com.easy:ad-base:1.0.0'
-    implementation 'com.github.Unity-Technologies:unity-ads-android:4.4.1'
-    implementation project(path: ':adbase')
+    api 'com.tencent:mmkv:1.2.14'
 }
 
 Properties properties = new Properties()
@@ -45,7 +43,7 @@ publishing {
     publications {
         release(MavenPublication){
             groupId='com.easy'
-            artifactId = 'ad-unity'
+            artifactId = 'common'
             version = '1.0.0'
             afterEvaluate {
                 from components.release

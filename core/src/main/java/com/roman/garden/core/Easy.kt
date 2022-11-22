@@ -84,7 +84,7 @@ open class Easy {
         fun showInterstitial() {
             var result = _activity?.let {
                 it.get()?.let { a ->
-                    showInterstitial(a)
+                    AdEasy.instance.showInterstitial(a)
                     true
                 }
             }
@@ -226,7 +226,6 @@ open class Easy {
             this.readConfig(application)
             AdEasy.instance.startAdTasks(application)
         }
-
     }
 
 
