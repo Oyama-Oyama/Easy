@@ -36,11 +36,13 @@ open class Easy {
                         activity: Activity
                     ) {
                         when(state){
-                            ActivityStatus.ActivityState.CREATED -> {}
-                            ActivityStatus.ActivityState.STARTED -> {
+                            ActivityStatus.ActivityState.CREATED -> {
                                 onStart(activity)
                             }
-                            ActivityStatus.ActivityState.RESUMED -> {}
+                            ActivityStatus.ActivityState.STARTED -> {}
+                            ActivityStatus.ActivityState.RESUMED -> {
+                                onStart(activity)
+                            }
                             ActivityStatus.ActivityState.PAUSED -> {}
                             ActivityStatus.ActivityState.STOPPED -> {
                              //   hideBanner()

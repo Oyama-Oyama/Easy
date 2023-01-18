@@ -3,13 +3,14 @@ package com.roman.garden.core.ad.proxy
 import android.content.Context
 import android.os.Handler
 import android.os.Looper
-import android.util.Log
-import com.roman.garden.ad.base.*
+import com.roman.garden.ad.base.AdStatus
+import com.roman.garden.ad.base.AdType
+import com.roman.garden.ad.base.AdUnit
+import com.roman.garden.ad.base.AdUnitManager
 import com.roman.garden.core.ad.AdEasy
 import com.roman.garden.core.ad.AdListener
 import com.roman.garden.core.ad.EventListener
 import com.roman.garden.core.ad.platform.PlatformManager
-import java.lang.ref.WeakReference
 
 
 internal abstract class AdProxy : AdapterListener {
@@ -22,6 +23,9 @@ internal abstract class AdProxy : AdapterListener {
 
     private var runnable: Runnable = Runnable {
         run {
+            if (getAdType() == AdType.INTERSTITIAL || getAdType() == AdType.REWARDED_VIDEO){
+                return@Runnable
+            }
             findHighPriceAdUnit().let {
                 if (it == null)
                     load(AdEasy.instance.getContext(), null)
@@ -34,8 +38,8 @@ internal abstract class AdProxy : AdapterListener {
     protected abstract fun getPartListener(): AdListener?
     abstract fun setPartListener(adListener: AdListener?)
 
-    private fun init(){
-        if (!isInit){
+    private fun init() {
+        if (!isInit) {
             isInit = true
             AdapterListenerProxy.instance.setListener(getAdType(), this)
             handler.postDelayed(runnable, 60 * 1000)

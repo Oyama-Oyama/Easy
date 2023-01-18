@@ -7,6 +7,7 @@ import com.roman.garden.ad.base.AdStatus
 import com.roman.garden.ad.base.AdType
 import com.roman.garden.ad.base.AdUnit
 import com.roman.garden.ad.base.AdUnitManager
+import com.roman.garden.core.ad.AdEasy
 import com.roman.garden.core.ad.AdListener
 import com.roman.garden.core.ad.platform.PlatformManager
 import java.lang.ref.WeakReference
@@ -25,7 +26,7 @@ internal class BannerProxy : AdProxy() {
         run {
             _container?.let {
                 it.get()?.let { viewGroup ->
-                    show(viewGroup)
+                    doShow()
                     handler.postDelayed(runnable, AdUnitManager.instance.getBannerRefreshDuration())
                 }
             }
@@ -49,6 +50,10 @@ internal class BannerProxy : AdProxy() {
         _container = WeakReference(container)
         handler.removeCallbacks(runnable)
         handler.postDelayed(runnable, AdUnitManager.instance.getBannerRefreshDuration())
+        doShow()
+    }
+
+    fun doShow() {
         getCanShowAdUnit().let {
             when (it) {
                 null -> onAdShowFail(
@@ -63,13 +68,18 @@ internal class BannerProxy : AdProxy() {
                                     it,
                                     AdStatus.AD_SHOW_FAIL.extra("can't find adapter to Show ad:${AdType.BANNER}")
                                 )
-                                else -> adapter.showBanner(adUnit, container)
+                                else -> {
+                                    _container?.get()
+                                        ?.let {
+                                                it1 -> adapter.showBanner(adUnit, it1) }
+                                }
                             }
                         }
                     }
                 }
             }
         }
+        load(AdEasy.instance.getContext(), null)
     }
 
     fun hide() {

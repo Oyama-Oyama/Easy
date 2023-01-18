@@ -46,7 +46,7 @@ publishing {
         release(MavenPublication){
             groupId='com.easy'
             artifactId = 'ad-unity'
-            version = '1.0.0'
+            version = '1.0.3'
             afterEvaluate {
                 from components.release
             }

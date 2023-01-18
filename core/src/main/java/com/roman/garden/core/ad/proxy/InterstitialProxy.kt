@@ -31,10 +31,13 @@ internal class InterstitialProxy : AdProxy() {
     fun show(activity: Activity) {
         getCanShowAdUnit().let {
             when (it) {
-                null -> onAdShowFail(
-                    AdUnit(),
-                    AdStatus.AD_SHOW_FAIL.extra("can't find adUnit to Show:${AdType.INTERSTITIAL}")
-                )
+                null -> {
+                    onAdShowFail(
+                        AdUnit(),
+                        AdStatus.AD_SHOW_FAIL.extra("can't find adUnit to Show:${AdType.INTERSTITIAL}")
+                    )
+                    load(AdEasy.instance.getContext(), null)
+                }
                 else -> {
                     it.let { adUnit ->
                         PlatformManager.instance.findAdapter(adUnit).let { adapter ->
