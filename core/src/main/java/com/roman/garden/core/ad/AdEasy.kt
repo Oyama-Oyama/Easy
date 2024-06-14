@@ -30,6 +30,7 @@ internal class AdEasy : AdEasyProxy {
                 AdType.REWARDED_VIDEO -> RewardedProxy.instance.load(context, null)
                 AdType.BANNER -> BannerProxy.instance.load(context, null)
                 AdType.NATIVE_AD -> NativeAdProxy.instance.load(context, null)
+                else -> {}
             }
         }
     }
@@ -41,6 +42,7 @@ internal class AdEasy : AdEasyProxy {
             AdType.APP_OPEN_AD -> AppOpenProxy.instance.onAdShowFail(AdUnit(), reason)
             AdType.BANNER -> BannerProxy.instance.onAdShowFail(AdUnit(), reason)
             AdType.NATIVE_AD -> NativeAdProxy.instance.onAdShowFail(AdUnit(), reason)
+            else -> {}
         }
     }
 

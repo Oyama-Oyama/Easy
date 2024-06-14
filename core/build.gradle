@@ -80,8 +80,7 @@ android {
 
 dependencies {
     api project(path: ':adbase')
-  //  api project(path: ':common')
-
+    api project(path: ':common')
 }
 
 Properties properties = new Properties()

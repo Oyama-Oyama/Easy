@@ -28,6 +28,7 @@ class AdUnitManager {
             AdType.BANNER -> bannerGroups = plusAdUnit(bannerGroups, adUnit)
             AdType.NATIVE_AD -> nativeGroups = plusAdUnit(nativeGroups, adUnit)
             AdType.APP_OPEN_AD -> appOpenAdGroups = plusAdUnit(appOpenAdGroups, adUnit)
+            else -> {}
         }
     }
 
@@ -49,14 +50,14 @@ class AdUnitManager {
     }
 
     fun findNextAdUnit(adUnit: AdUnit?, adType: AdType) : Array<AdUnit> {
-        when(adType){
-            AdType.INTERSTITIAL -> return realFindNextAdUnit(interstitialGroups, adUnit)
-            AdType.REWARDED_VIDEO -> return realFindNextAdUnit(rewardedGroups, adUnit)
-            AdType.BANNER -> return realFindNextAdUnit(bannerGroups, adUnit)
-            AdType.NATIVE_AD -> return realFindNextAdUnit(nativeGroups, adUnit)
-            AdType.APP_OPEN_AD -> return realFindNextAdUnit(appOpenAdGroups, adUnit)
+        return when(adType){
+            AdType.INTERSTITIAL -> realFindNextAdUnit(interstitialGroups, adUnit)
+            AdType.REWARDED_VIDEO -> realFindNextAdUnit(rewardedGroups, adUnit)
+            AdType.BANNER -> realFindNextAdUnit(bannerGroups, adUnit)
+            AdType.NATIVE_AD -> realFindNextAdUnit(nativeGroups, adUnit)
+            AdType.APP_OPEN_AD -> realFindNextAdUnit(appOpenAdGroups, adUnit)
+            else -> arrayOf()
         }
-        return arrayOf()
     }
 
     private fun realFindNextAdUnit(array: Array<AdGroup>?, adUnit: AdUnit?) : Array<AdUnit> {

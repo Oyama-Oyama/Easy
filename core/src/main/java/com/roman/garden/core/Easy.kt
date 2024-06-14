@@ -18,7 +18,7 @@ import java.lang.ref.WeakReference
 open class Easy {
 
     companion object {
-        private val TAG_BANNER_CONTAINER = "_tag_banner_container_"
+        private const val TAG_BANNER_CONTAINER = "_tag_banner_container_"
         private lateinit var _easy: Easy
         open lateinit var context: Context
         private var _activity: WeakReference<Activity>? = null

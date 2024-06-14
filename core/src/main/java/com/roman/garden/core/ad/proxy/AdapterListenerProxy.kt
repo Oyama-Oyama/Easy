@@ -21,6 +21,7 @@ internal class AdapterListenerProxy : IAdLoadListener, IAdListener {
             AdType.APP_OPEN_AD -> appOpenAdListener = listener
             AdType.BANNER -> bannerListener = listener
             AdType.NATIVE_AD -> nativeAdListener = listener
+            else -> {}
         }
     }
 
@@ -31,6 +32,7 @@ internal class AdapterListenerProxy : IAdLoadListener, IAdListener {
             AdType.APP_OPEN_AD -> appOpenAdListener?.onAdShow(adUnit)
             AdType.BANNER -> bannerListener?.onAdShow(adUnit)
             AdType.NATIVE_AD -> nativeAdListener?.onAdShow(adUnit)
+            else -> {}
         }
     }
 
@@ -41,6 +43,7 @@ internal class AdapterListenerProxy : IAdLoadListener, IAdListener {
             AdType.APP_OPEN_AD -> appOpenAdListener?.onAdShowFail(adUnit, reason)
             AdType.BANNER -> bannerListener?.onAdShowFail(adUnit, reason)
             AdType.NATIVE_AD -> nativeAdListener?.onAdShowFail(adUnit, reason)
+            else -> {}
         }
     }
 
@@ -51,6 +54,7 @@ internal class AdapterListenerProxy : IAdLoadListener, IAdListener {
             AdType.APP_OPEN_AD -> appOpenAdListener?.onAdClicked(adUnit)
             AdType.BANNER -> bannerListener?.onAdClicked(adUnit)
             AdType.NATIVE_AD -> nativeAdListener?.onAdClicked(adUnit)
+            else -> {}
         }
     }
 
@@ -61,6 +65,7 @@ internal class AdapterListenerProxy : IAdLoadListener, IAdListener {
             AdType.APP_OPEN_AD -> appOpenAdListener?.onAdClosed(adUnit)
             AdType.BANNER -> bannerListener?.onAdClosed(adUnit)
             AdType.NATIVE_AD -> nativeAdListener?.onAdClosed(adUnit)
+            else -> {}
         }
     }
 
@@ -71,6 +76,7 @@ internal class AdapterListenerProxy : IAdLoadListener, IAdListener {
             AdType.APP_OPEN_AD -> appOpenAdListener?.onUserRewarded(adUnit)
             AdType.BANNER -> bannerListener?.onUserRewarded(adUnit)
             AdType.NATIVE_AD -> nativeAdListener?.onUserRewarded(adUnit)
+            else -> {}
         }
     }
 
@@ -81,6 +87,7 @@ internal class AdapterListenerProxy : IAdLoadListener, IAdListener {
             AdType.APP_OPEN_AD -> appOpenAdListener?.onRequestShow(adUnit)
             AdType.BANNER -> bannerListener?.onRequestShow(adUnit)
             AdType.NATIVE_AD -> nativeAdListener?.onRequestShow(adUnit)
+            else -> {}
         }
     }
 
@@ -91,6 +98,7 @@ internal class AdapterListenerProxy : IAdLoadListener, IAdListener {
             AdType.APP_OPEN_AD -> appOpenAdListener?.onLoadSuccess(adUnit)
             AdType.BANNER -> bannerListener?.onLoadSuccess(adUnit)
             AdType.NATIVE_AD -> nativeAdListener?.onLoadSuccess(adUnit)
+            else -> {}
         }
     }
 
@@ -101,6 +109,7 @@ internal class AdapterListenerProxy : IAdLoadListener, IAdListener {
             AdType.APP_OPEN_AD -> appOpenAdListener?.onLoadFail(adUnit, reason)
             AdType.BANNER -> bannerListener?.onLoadFail(adUnit, reason)
             AdType.NATIVE_AD -> nativeAdListener?.onLoadFail(adUnit, reason)
+            else -> {}
         }
     }
 
@@ -111,6 +120,7 @@ internal class AdapterListenerProxy : IAdLoadListener, IAdListener {
             AdType.APP_OPEN_AD -> appOpenAdListener?.onRequestLoad(adUnit)
             AdType.BANNER -> bannerListener?.onRequestLoad(adUnit)
             AdType.NATIVE_AD -> nativeAdListener?.onRequestLoad(adUnit)
+            else -> {}
         }
     }
 

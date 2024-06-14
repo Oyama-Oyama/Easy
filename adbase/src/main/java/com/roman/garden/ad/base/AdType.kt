@@ -11,10 +11,10 @@ enum class AdType(val value: String) {
 
 
     open fun isValid() : Boolean {
-        when(this){
-            INTERSTITIAL, REWARDED_VIDEO, BANNER, NATIVE_AD, APP_OPEN_AD -> return true
+        return when(this){
+            INTERSTITIAL, REWARDED_VIDEO, BANNER, NATIVE_AD, APP_OPEN_AD -> true
+            else -> false
         }
-        return false
     }
 
     companion object{

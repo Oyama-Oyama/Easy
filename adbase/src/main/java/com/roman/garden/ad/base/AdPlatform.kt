@@ -6,17 +6,17 @@ enum class AdPlatform(val value: String) {
     UNITY("unity"),
     INVALID("invalid");
 
-    open fun isValid() : Boolean {
-        when(this){
-            ADMOB, UNITY -> return true
+    open fun isValid(): Boolean {
+        return when (this) {
+            ADMOB, UNITY -> true
+            else -> false
         }
-        return false
     }
 
     companion object {
 
-        open fun getPlatform(str: String?) : AdPlatform {
-            when(str){
+        open fun getPlatform(str: String?): AdPlatform {
+            when (str) {
                 ADMOB.value -> return ADMOB
                 UNITY.value -> return UNITY
             }
