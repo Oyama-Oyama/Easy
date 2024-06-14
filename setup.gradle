@@ -1,0 +1,221 @@
+import sun.tools.jar.CommandLine
+
+ext {
+
+    maven = [
+            publish_version     :   "1.0.4.19"
+    ]
+
+    versions = [
+            compileSdk  :       33,
+            minSdk      :       21,
+            targetSdk   :       33
+    ]
+
+    depVersions = [
+
+            appcompat                       :   "1.4.1",
+            material                        :   "1.5.0",
+            constraintlayout                :   "2.1.3",
+            kotlinx_coroutines_android      :   "1.7.3",
+            kotlinx_coroutines_core         :   "1.7.3",
+            MMKV                            :   "1.2.15",
+            lifecycle_process               :   "2.5.1",
+            androidCore                     :   "1.7.0",
+            admob                           :   "22.0.0",
+            admob_lite                      :   "22.0.0",
+            unity_ads                       :   "4.6.1",
+            vungle                          :   "6.12.1",
+            googlePlayGame                  :   "23.0.0",
+            googlePlayAuth                  :   "20.3.0"
+    ]
+
+    deps = [
+            appcompat                   : "androidx.appcompat:appcompat:${depVersions.appcompat}",
+            material                    : "com.google.android.material:material:${depVersions.material}",
+            constraintlayout            : "androidx.constraintlayout:constraintlayout:${depVersions.constraintlayout}",
+            kotlinx_coroutines_android  : "org.jetbrains.kotlinx:kotlinx-coroutines-android:${depVersions.kotlinx_coroutines_android}",
+            kotlinx_coroutines_core     : "org.jetbrains.kotlinx:kotlinx-coroutines-core:${depVersions.kotlinx_coroutines_core}",
+            MMKV                        : "com.tencent:mmkv:${depVersions.MMKV}",
+            admob                       : "com.google.android.gms:play-services-ads:${depVersions.admob}",
+            lifecycle_process           : "androidx.lifecycle:lifecycle-process:${depVersions.lifecycle_process}",
+            androidCore                 : "androidx.core:core-ktx:${depVersions.androidCore}",
+            admob_lite                  : "com.google.android.gms:play-services-ads-lite:${depVersions.admob_lite}",
+            unity_ads                   : "com.unity3d.ads:unity-ads:${depVersions.unity_ads}",
+            adbase                      : "com.easy:adbase:${maven.publish_version}",
+            base                        : "com.easy:base:${maven.publish_version}",
+            core                        : "com.easy:core:${maven.publish_version}",
+            adCore                      : "com.easy:adCore:${maven.publish_version}",
+            vungle                      : "com.vungle:publisher-sdk-android:${depVersions.vungle}",
+            googlePlayGame              : "com.google.android.gms:play-services-games:${depVersions.googlePlayGame}",
+            googlePlayAuth              : "com.google.android.gms:play-services-auth:${depVersions.googlePlayAuth}"
+    ]
+
+}
+
+
+task uploadRepoAdBase (dependsOn: ':adbase:publish'){
+    group('upload')
+    description('com.easy:adbase:' + rootProject.ext.maven.publish_version)
+}
+
+task uploadRepoBase (dependsOn: ':base:publish'){
+    group('upload')
+    description('com.easy:base:' + rootProject.ext.maven.publish_version)
+    doFirst{ println("start---uploadRepoBase") }
+    doLast{ println("end---uploadRepoBase") }
+}
+
+task uploadRepoAdCore (dependsOn: ':adCore:publish'){
+    group('upload')
+    description('com.easy:adCore:' + rootProject.ext.maven.publish_version)
+    mustRunAfter(uploadRepoBase)
+}
+
+task uploadRepoCore (dependsOn: ':Core:publish'){
+    group('upload')
+    description('com.easy:Core:' + rootProject.ext.maven.publish_version)
+}
+
+task uploadRepoUnity (dependsOn: ':unity:publish'){
+    group('upload')
+    description('com.easy:unity:' + rootProject.ext.maven.publish_version)
+}
+
+task uploadRepoAdmob (dependsOn: ':admob:publish'){
+    group('upload')
+    description('com.easy:admob:' + rootProject.ext.maven.publish_version)
+}
+
+task uploadRepoVungle (dependsOn: ':vungle:publish'){
+    group('upload')
+    description('com.easy:vungle:' + rootProject.ext.maven.publish_version)
+}
+
+task uploadRepoFirebase (dependsOn: ':firebase:publish'){
+    group('upload')
+    description('com.easy:firebase:' + rootProject.ext.maven.publish_version)
+}
+
+task uploadRepoUnityProxy (dependsOn: ':UnityProxy:publish'){
+    group('upload')
+    description('com.easy:UnityProxy:' + rootProject.ext.maven.publish_version)
+}
+
+task cleanAll(){
+    group('upload')
+    dependsOn(':adbase:clean', ':base:clean', 'firebase:clean', ':adCore:clean', ':Core:clean', ':unity:clean', ':admob:clean', ':UnityProxy:clean')
+}
+
+task rebuildAll(){
+    group('upload')
+    dependsOn(cleanAll, ':adbase:build', ':base:build', 'firebase:build', ':adCore:build', ':Core:build', ':unity:build', ':admob:build', ':UnityProxy:build')
+//    println(rootProject.findProject("adbase").getAllTasks(false))
+//    rootProject.findProject("adbase").getTasks().findByName("build").doFirst({
+//        println("adbase rebuild")
+//    })
+}
+
+task uploadAllRepo(){
+    group('upload')
+    description('upload all repo')
+    //dependsOn(':adbase:uploadRepo', ':base:uploadRepo', 'firebase:uploadRepo', ':adCore:uploadRepo', ':Core:uploadRepo', ':unity:uploadRepo', ':admob:uploadRepo')
+//    dependsOn(cleanAll, uploadRepoBase, uploadRepoAdBase, uploadRepoCore, uploadRepoAdCore, uploadRepoUnity, uploadRepoAdmob, uploadRepoFirebase)
+
+    task('UnityProxy', dependsOn: ":UnityProxy:publish"){
+        doLast{
+            println("com.easy:UnityProxy:${maven.publish_version}")
+        }
+    }
+
+    task('vungle', dependsOn: ":vungle:publish"){
+        finalizedBy('UnityProxy')
+        doLast{
+            println("com.easy:vungle:${maven.publish_version}")
+        }
+    }
+
+    task('unity', dependsOn: ":unity:publish"){
+        finalizedBy('vungle')
+        doLast{
+            println("com.easy:unity:${maven.publish_version}")
+        }
+    }
+
+    task('admob', dependsOn: ":admob:publish"){
+        finalizedBy('unity')
+        doLast{
+            println("com.easy:admob:${maven.publish_version}")
+        }
+    }
+
+    task('firebase', dependsOn: ":firebase:publish"){
+        finalizedBy('admob')
+        doLast{
+            println("com.easy:firebase:${maven.publish_version}")
+        }
+    }
+
+    task('adCore', dependsOn: ":adCore:publish"){
+        finalizedBy('firebase')
+        doLast{
+            println("com.easy:adCore:${maven.publish_version}")
+        }
+    }
+
+    task('Core', dependsOn: ":Core:publish"){
+        finalizedBy('adCore')
+        doLast{
+            println("com.easy:Core:${maven.publish_version}")
+        }
+    }
+    task('adbase', dependsOn: ":adbase:publish"){
+        finalizedBy('Core')
+        doLast{
+            println("com.easy:adbase:${maven.publish_version}")
+        }
+    }
+
+    task('base', dependsOn: ':base:publish'){
+        finalizedBy('adbase')
+        doLast{
+            println("com.easy:base:${maven.publish_version}")
+        }
+    }
+
+   task('cleanTask'){
+        dependsOn(':adbase:clean', ':base:clean', 'firebase:clean', ':adCore:clean', ':Core:clean', ':unity:clean', ':admob:clean', ':vungle:clean')
+        finalizedBy('base')
+        doLast{
+            println('all clean')
+        }
+    }
+
+    dependsOn('cleanTask')
+    doFirst{
+
+    }
+}
+
+rebuildAll.mustRunAfter(cleanAll)
+
+//uploadRepoBase.dependsOn(cleanAll)
+//uploadRepoAdBase.dependsOn(uploadRepoBase)
+////preBuildAdBase.mustRunAfter(uploadRepoAdBase)
+////preBuildAdCore.mustRunAfter(uploadRepoAdBase)
+////preBuildCore.mustRunAfter(uploadRepoAdBase)
+////preBuildFirebase.mustRunAfter(uploadRepoAdBase)
+//
+//uploadRepoCore.dependsOn(uploadRepoAdBase)
+//uploadRepoAdCore.dependsOn(uploadRepoCore)
+//uploadRepoUnity.dependsOn(uploadRepoAdCore)
+//uploadRepoAdmob.dependsOn(uploadRepoAdCore)
+//uploadRepoFirebase.dependsOn(uploadRepoCore)
+
+
+
+
+
+
+
+

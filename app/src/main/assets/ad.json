@@ -1,0 +1,219 @@
+{
+  "placements": [
+    {
+      "type": "banner",
+      "refresh": 20000,
+      "max": -1,
+      "adUnits": [
+        {
+          "adUnitId": "ca-app-pub-3940256099942544/6300978111",
+          "platform": "admob",
+          "price": 1,
+          "group": "test",
+          "adType": "banner"
+        },
+        {
+          "adUnitId": "ca-app-pub-5068274441143120/6811192412",
+          "platform": "admob",
+          "price": 3,
+          "group": "admob",
+          "adType": "banner"
+        },
+        {
+          "adUnitId": "ca-app-pub-5068274441143120/9628927443",
+          "platform": "admob",
+          "price": 2,
+          "group": "admob",
+          "adType": "banner"
+        },
+        {
+          "adUnitId": "ca-app-pub-5068274441143120/8259429120",
+          "platform": "admob",
+          "price": 1,
+          "group": "admob",
+          "adType": "banner"
+        },
+        {
+          "adUnitId": "Banner_Android",
+          "platform": "unity",
+          "price": 3,
+          "group": "unity",
+          "adType": "banner"
+        },
+        {
+          "adUnitId": "unity_banner_2",
+          "platform": "unity",
+          "price": 2,
+          "group": "unity",
+          "adType": "banner"
+        }
+      ]
+    },
+    {
+      "type": "interstitial",
+      "refresh": 20,
+      "max": 2,
+      "adUnits": [
+        {
+          "adUnitId": "ca-app-pub-5068274441143120/2328736510",
+          "platform": "admob",
+          "price": 3,
+          "group": "admob",
+          "adType": "interstitial"
+        },
+        {
+          "adUnitId": "ca-app-pub-5068274441143120/7772634884",
+          "platform": "admob",
+          "price": 2,
+          "group": "admob",
+          "adType": "interstitial"
+        },
+        {
+          "adUnitId": "ca-app-pub-5068274441143120/7972472753",
+          "platform": "admob",
+          "price": 1,
+          "group": "admob",
+          "adType": "interstitial"
+        },
+        {
+          "adUnitId": "Interstitial_Android",
+          "platform": "unity",
+          "price": 3,
+          "group": "unity",
+          "adType": "interstitial"
+        },
+        {
+          "adUnitId": "unity_interstitial",
+          "platform": "unity",
+          "price": 3,
+          "group": "unity",
+          "adType": "interstitial"
+        }
+      ]
+    },
+    {
+      "type": "rewarded",
+      "refresh": 20,
+      "max": 2,
+      "adUnits": [
+        {
+          "adUnitId": "ca-app-pub-5068274441143120/9395911585",
+          "platform": "admob",
+          "price": 3,
+          "group": "admob",
+          "adType": "rewarded"
+        },
+        {
+          "adUnitId": "ca-app-pub-5068274441143120/3067103115",
+          "platform": "admob",
+          "price": 2,
+          "group": "admob",
+          "adType": "rewarded"
+        },
+        {
+          "adUnitId": "ca-app-pub-5068274441143120/4764404223",
+          "platform": "admob",
+          "price": 1,
+          "group": "admob",
+          "adType": "rewarded"
+        },
+        {
+          "adUnitId": "Rewarded_Android",
+          "platform": "unity",
+          "price": 1,
+          "group": "unity",
+          "adType": "rewarded"
+        },
+        {
+          "adUnitId": "unity_rewarded",
+          "platform": "unity",
+          "price": 1,
+          "group": "unity",
+          "adType": "rewarded"
+        }
+      ]
+    },
+    {
+      "type": "nativeAd",
+      "refresh": 20,
+      "max": 2,
+      "adUnits": [
+        {
+          "adUnitId": "ca-app-pub-5068274441143120/4571756470",
+          "platform": "admob",
+          "price": 3,
+          "group": "admob",
+          "adType": "nativeAd"
+        },
+        {
+          "adUnitId": "ca-app-pub-5068274441143120/2137164823",
+          "platform": "admob",
+          "price": 2,
+          "group": "admob",
+          "adType": "nativeAd"
+        },
+        {
+          "adUnitId": "ca-app-pub-5068274441143120/5633265786",
+          "platform": "admob",
+          "price": 1,
+          "group": "admob",
+          "adType": "nativeAd"
+        },
+        {
+          "adUnitId": "ca-app-pub-3940256099942544/2247696110",
+          "platform": "admob",
+          "price": 1,
+          "group": "test",
+          "adType": "nativeAd"
+        },
+        {
+          "adUnitId": "ca-app-pub-3940256099942544/1044960115",
+          "platform": "admob",
+          "price": 1,
+          "group": "test",
+          "adType": "nativeAd"
+        }
+      ]
+    },
+    {
+      "type": "appOpenAd",
+      "refresh": 20,
+      "max": 1,
+      "adUnits": [
+        {
+          "adUnitId": "ca-app-pub-5068274441143120/9387080093",
+          "platform": "admob",
+          "price": 3,
+          "group": "admob",
+          "adType": "appOpenAd"
+        },
+        {
+          "adUnitId": "ca-app-pub-5068274441143120/3882352414",
+          "platform": "admob",
+          "price": 2,
+          "group": "admob",
+          "adType": "appOpenAd"
+        },
+        {
+          "adUnitId": "ca-app-pub-5068274441143120/9046715423",
+          "platform": "admob",
+          "price": 1,
+          "group": "admob",
+          "adType": "appOpenAd"
+        }
+      ]
+    }
+  ],
+  "platforms": [
+    {
+      "platform": "admob",
+      "appKey": "ca-app-pub-5068274441143120~9285554423",
+      "appSecret": ""
+    },
+    {
+      "platform": "unity",
+      "appKey": "4144027",
+      "appSecret": ""
+    }
+  ]
+}

@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<issues format="6" by="lint 7.1.3" type="baseline" client="gradle" dependencies="false" name="AGP (7.1.3)" variant="all" version="7.1.3">
+
+    <issue
+        id="NewApi"
+        message="Call requires API level 24 (current min is 21): `java.lang.Iterable#forEach`"
+        errorLine1="                    getListeners(bundle)?.forEach { it.get()?.onShow() }"
+        errorLine2="                                          ~~~~~~~">
+        <location
+            file="src/main/java/com/roman/garden/core/Easy.kt"
+            line="134"
+            column="43"/>
+    </issue>
+
+    <issue
+        id="NewApi"
+        message="Call requires API level 24 (current min is 21): `java.lang.Iterable#forEach`"
+        errorLine1="                    getListeners(bundle)?.forEach { it.get()?.onClicked() }"
+        errorLine2="                                          ~~~~~~~">
+        <location
+            file="src/main/java/com/roman/garden/core/Easy.kt"
+            line="137"
+            column="43"/>
+    </issue>
+
+    <issue
+        id="NewApi"
+        message="Call requires API level 24 (current min is 21): `java.lang.Iterable#forEach`"
+        errorLine1="                    getListeners(bundle)?.forEach { it.get()?.onShowFail(reason) }"
+        errorLine2="                                          ~~~~~~~">
+        <location
+            file="src/main/java/com/roman/garden/core/Easy.kt"
+            line="141"
+            column="43"/>
+    </issue>
+
+    <issue
+        id="NewApi"
+        message="Call requires API level 24 (current min is 21): `java.lang.Iterable#forEach`"
+        errorLine1="                    getListeners(bundle)?.forEach { it.get()?.onClosed() }"
+        errorLine2="                                          ~~~~~~~">
+        <location
+            file="src/main/java/com/roman/garden/core/Easy.kt"
+            line="144"
+            column="43"/>
+    </issue>
+
+    <issue
+        id="NewApi"
+        message="Call requires API level 24 (current min is 21): `java.lang.Iterable#forEach`"
+        errorLine1="                    getListeners(bundle)?.forEach { it.get()?.onUserRewarded() }"
+        errorLine2="                                          ~~~~~~~">
+        <location
+            file="src/main/java/com/roman/garden/core/Easy.kt"
+            line="147"
+            column="43"/>
+    </issue>
+
+    <issue
+        id="GradleDynamicVersion"
+        message="Avoid using + in version numbers; can lead to unpredictable and unrepeatable builds (com.easy:base:1.0.+)"
+        errorLine1="    api &apos;com.easy:base:1.0.+&apos;"
+        errorLine2="        ~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="build.gradle"
+            line="34"
+            column="9"/>
+    </issue>
+
+</issues>

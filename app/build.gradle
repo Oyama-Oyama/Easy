@@ -1,0 +1,67 @@
+plugins {
+    id 'com.android.application'
+    id 'org.jetbrains.kotlin.android'
+}
+
+android {
+    compileSdk rootProject.ext.versions.compileSdk
+
+    defaultConfig {
+        applicationId "com.roman.gurdan.sudo.pro"
+        minSdk rootProject.ext.versions.minSdk
+        targetSdk rootProject.ext.versions.targetSdk
+        versionCode 1
+        versionName "1.0"
+    }
+
+    signingConfigs {
+        release {
+            storeFile file('test.keystore')
+            keyAlias = 'test'
+            storePassword '123456'
+            keyPassword '123456'
+        }
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.release
+        }
+        debug {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.release
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+    kotlinOptions {
+        jvmTarget = '1.8'
+    }
+    lint {
+        baseline = file("lint-baseline.xml")
+    }
+    namespace 'com.roman.gurdan.sudo.pro'
+}
+
+dependencies {
+
+    implementation rootProject.ext.deps.appcompat
+    implementation rootProject.ext.deps.material
+    implementation rootProject.ext.deps.constraintlayout
+    implementation rootProject.ext.deps.androidCore
+
+
+
+    implementation project(path: ':adCore')
+    implementation project(path: ':Core')
+    implementation project(path: ':admob')
+    implementation project(path: ':unity')
+    implementation project(path: ':firebase')
+
+}
+apply plugin: 'com.google.gms.google-services'

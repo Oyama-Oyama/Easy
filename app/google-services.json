@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "377187251866",
+    "project_id": "sudoku-5c7cb",
+    "storage_bucket": "sudoku-5c7cb.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:377187251866:android:e398b403cb802870211123",
+        "android_client_info": {
+          "package_name": "com.roman.gurdan.sudo.pro"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "377187251866-frvjpffhompph5ulosgibms3ttp8tks7.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.roman.gurdan.sudo.pro",
+            "certificate_hash": "bc0505716db3ef9ce4b7f8db1cfc14b12be39d73"
+          }
+        },
+        {
+          "client_id": "377187251866-p74bfpunnlhk811fma3gq0e05ke1vldd.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCBt0hKsaqAK8Cl6G1YPLiLThWHoDC8avA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "377187251866-p74bfpunnlhk811fma3gq0e05ke1vldd.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      },
+      "admob_app_id": "ca-app-pub-5068274441143120~9285554423"
+    }
+  ],
+  "configuration_version": "1"
+}

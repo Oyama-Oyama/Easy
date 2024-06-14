@@ -1,0 +1,82 @@
+plugins {
+    id 'com.android.library'
+    id 'org.jetbrains.kotlin.android'
+}
+
+android {
+    compileSdk rootProject.ext.versions.compileSdk
+
+    defaultConfig {
+        minSdk rootProject.ext.versions.minSdk
+        targetSdk rootProject.ext.versions.targetSdk
+        consumerProguardFiles "consumer-rules.pro"
+    }
+
+    signingConfigs {
+        release {
+            storeFile file('test.keystore')
+            keyAlias = 'test'
+            storePassword '123456'
+            keyPassword '123456'
+        }
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+        debug {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.release
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+    kotlinOptions {
+        jvmTarget = '1.8'
+    }
+    lint {
+        baseline = file("lint-baseline.xml")
+    }
+    namespace 'com.roman.garden.core'
+}
+
+dependencies {
+    releaseApi rootProject.ext.deps.base
+    debugApi project(path: ':base')
+
+    api rootProject.ext.deps.googlePlayGame
+    api rootProject.ext.deps.googlePlayAuth
+}
+
+Properties properties = new Properties()
+properties.load(project.rootProject.file('local.properties').newDataInputStream())
+def userName = properties.getProperty("USERNAME")
+def password = properties.getProperty("PASSWORD")
+
+apply plugin: 'maven-publish'
+publishing {
+    publications {
+        release(MavenPublication) {
+            groupId = 'com.easy'
+            artifactId = project.name
+            version = rootProject.ext.maven.publish_version
+            afterEvaluate {
+                from components.release
+            }
+        }
+    }
+    repositories {
+        maven {
+            url 'https://packages.aliyun.com/maven/repository/2304310-release-55tkv4/'
+            credentials {
+                it.username = userName
+                it.password = password
+            }
+        }
+    }
+}
