@@ -34,6 +34,7 @@ internal class FirebaseCore : IFirebase, CoroutineScope by MainScope() {
     }
 
     private fun initAnalytics() {
+
         firebaseAnalytics = Firebase.analytics
     }
 

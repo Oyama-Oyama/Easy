@@ -35,6 +35,7 @@ dependencies {
     implementation rootProject.ext.deps.constraintlayout
     implementation rootProject.ext.deps.appcompat
     implementation rootProject.ext.deps.admob
+    implementation rootProject.ext.deps.user_messaging_platform
     releaseImplementation rootProject.ext.deps.adbase
     debugImplementation project(path: ':adbase')
 

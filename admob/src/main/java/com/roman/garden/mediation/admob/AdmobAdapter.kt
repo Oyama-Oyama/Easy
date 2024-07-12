@@ -13,6 +13,11 @@ import com.google.android.gms.ads.interstitial.InterstitialAdLoadCallback
 import com.google.android.gms.ads.nativead.NativeAd
 import com.google.android.gms.ads.rewarded.RewardedAd
 import com.google.android.gms.ads.rewarded.RewardedAdLoadCallback
+import com.google.android.ump.ConsentDebugSettings
+import com.google.android.ump.ConsentInformation
+import com.google.android.ump.ConsentRequestParameters
+import com.google.android.ump.FormError
+import com.google.android.ump.UserMessagingPlatform
 import com.roman.garden.adbase.*
 import com.roman.garden.adbase.AdError
 import kotlinx.coroutines.suspendCancellableCoroutine
@@ -35,12 +40,36 @@ internal class AdmobAdapter : Adapter() {
                             .build()
                     )
                 }
-                MobileAds.initialize(ac.applicationContext) { _ ->
-                    it.resume(null)
+                checkUMP(ac, testMode) {
+                    MobileAds.initialize(ac.applicationContext) { _ ->
+                        it.resume(null)
+                    }
                 }
-
             } ?: it.resume(AdError.ADAPTER_INIT_FAIL.zip("context can't be null"))
         }
+
+    private fun checkUMP(activity: Activity, testMode: Boolean, callback: () -> Unit) {
+        val builder = ConsentRequestParameters.Builder().setTagForUnderAgeOfConsent(false);
+        if (testMode) {
+            val debugString = ConsentDebugSettings.Builder(activity.applicationContext)
+                .setDebugGeography(ConsentDebugSettings.DebugGeography.DEBUG_GEOGRAPHY_EEA)
+                .addTestDeviceHashedId("F3EDE78A2C3C4127A07CA5E97F0FDD02")
+                .build()
+            builder.setConsentDebugSettings(debugString)
+        }
+        val params = builder.build()
+        val consentInformation =
+            UserMessagingPlatform.getConsentInformation(activity.applicationContext)
+        consentInformation.requestConsentInfoUpdate(activity, params, {
+            UserMessagingPlatform.loadAndShowConsentFormIfRequired(activity) { error ->
+                callback.invoke()
+            }
+        }
+        ) { callback.invoke() }
+        if (consentInformation.canRequestAds()) {
+            callback.invoke()
+        }
+    }
 
     override fun loadBanner(adUnit: AdUnit) {
         getActivity()?.let { activity ->
@@ -325,8 +354,10 @@ internal class AdmobAdapter : Adapter() {
                     templateView = when (size) {
                         NativeAdUtil.DEFAULT_SMALL_TEMPLATE -> LayoutInflater.from(container.context)
                             .inflate(R.layout.small_template, null, false) as? TemplateView
+
                         NativeAdUtil.DEFAULT_MEDIUM_TEMPLATE -> LayoutInflater.from(container.context)
                             .inflate(R.layout.medium_template, null, false) as? TemplateView
+
                         else -> null
                     }
                 }

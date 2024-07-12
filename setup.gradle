@@ -3,7 +3,7 @@ import sun.tools.jar.CommandLine
 ext {
 
     maven = [
-            publish_version     :   "1.0.4.19"
+            publish_version     :   "1.0.5"
     ]
 
     versions = [
@@ -22,12 +22,13 @@ ext {
             MMKV                            :   "1.2.15",
             lifecycle_process               :   "2.5.1",
             androidCore                     :   "1.7.0",
-            admob                           :   "22.0.0",
-            admob_lite                      :   "22.0.0",
-            unity_ads                       :   "4.6.1",
+            admob                           :   "23.2.0",
+            admob_lite                      :   "23.2.0",
+            unity_ads                       :   "4.12.1",
             vungle                          :   "6.12.1",
             googlePlayGame                  :   "23.0.0",
-            googlePlayAuth                  :   "20.3.0"
+            googlePlayAuth                  :   "20.3.0",
+            user_messaging_platform          :   "2.2.0"
     ]
 
     deps = [
@@ -48,9 +49,9 @@ ext {
             adCore                      : "com.easy:adCore:${maven.publish_version}",
             vungle                      : "com.vungle:publisher-sdk-android:${depVersions.vungle}",
             googlePlayGame              : "com.google.android.gms:play-services-games:${depVersions.googlePlayGame}",
-            googlePlayAuth              : "com.google.android.gms:play-services-auth:${depVersions.googlePlayAuth}"
+            googlePlayAuth              : "com.google.android.gms:play-services-auth:${depVersions.googlePlayAuth}",
+            user_messaging_platform     : "com.google.android.ump:user-messaging-platform:${depVersions.user_messaging_platform}"
     ]
-
 }
 
 
